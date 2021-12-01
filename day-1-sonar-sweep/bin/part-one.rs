@@ -1,25 +1,10 @@
-use std::{
-    fs::File,
-    io::{prelude::*, BufReader},
-};
+const INPUT: &str = include_str!("../../inputs/day-1-sonar-sweep.txt");
 
 fn main() {
-    let input_file = File::open("./inputs/day-1-sonar-sweep.txt")
-        .expect("Could not find ./inputs/day-1-sonar-sweep.txt");
-    let reader = BufReader::new(input_file);
-    let mut count_increased = 0;
     let mut previous = 0;
+    let mut count_increased = 0;
 
-    for line in reader.lines() {
-        if line.is_err() {
-            break;
-        }
-
-        let line = line.unwrap();
-        let current = line
-            .parse::<i32>()
-            .expect("Could not parse string into i32");
-
+    for current in INPUT.lines().map(|v| v.parse::<i32>().unwrap()) {
         if previous == 0 {
             println!("{} (N/A - no previous measurement)", current);
         } else if previous < current {

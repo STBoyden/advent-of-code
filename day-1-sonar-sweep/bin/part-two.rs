@@ -1,32 +1,19 @@
-use std::{
-    fs::File,
-    io::{prelude::*, BufReader},
-};
+const INPUT: &str = include_str!("../../inputs/day-1-sonar-sweep.txt");
 
 fn main() {
-    let input_file = File::open("./inputs/day-1-sonar-sweep.txt")
-        .expect("Could not find ./inputs/day-1-sonar-sweep.txt");
-    let reader = BufReader::new(input_file);
     let mut count_increased = 0;
     let mut previous_sum = 0;
-    let lines = reader.lines().map(|x| x.unwrap()).collect::<Vec<_>>();
 
-    // let mut line_iter = reader.lines().peekable();
+    let iter = INPUT
+        .lines()
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
 
-    for (index, line) in lines.iter().enumerate() {
-        let n0 = line.parse::<i32>().expect("Could not parse line as i32");
-        let n1 = lines
-            .get(index + 1)
-            .unwrap_or(&"0".into())
-            .parse::<i32>()
-            .unwrap();
-        let n2 = lines
-            .get(index + 2)
-            .unwrap_or(&"0".into())
-            .parse::<i32>()
-            .unwrap();
+    for (index, current) in INPUT.lines().map(|x| x.parse::<i32>().unwrap()).enumerate() {
+        let n1 = iter.get(index + 1).unwrap_or(&0);
+        let n2 = iter.get(index + 2).unwrap_or(&0);
 
-        let current_sum = n0 + n1 + n2;
+        let current_sum = current + n1 + n2;
 
         if previous_sum == 0 {
             println!("{} (N/A - no previous measurement", current_sum);
