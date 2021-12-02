@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "day-1-sonar-sweep"
+    "day-1-sonar-sweep",
+    "day-2-dive"
 ]
