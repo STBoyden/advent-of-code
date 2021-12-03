@@ -9,7 +9,6 @@ edition = "2021"
 name = "day-1-part-1"
 path = "bin/part-one.rs"
 
-
 [[bin]]
 name = "day-1-part-2"
 path = "bin/part-two.rs"
