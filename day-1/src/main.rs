@@ -32,7 +32,7 @@ fn part_two(input: &str) -> i32 {
             let mut line = String::from(line);
             let mut ranges = vec![];
 
-            for key in number_map.keys() {
+            number_map.keys().for_each(|key| {
                 ranges.append(
                     &mut line
                         .match_indices(key)
@@ -42,7 +42,7 @@ fn part_two(input: &str) -> i32 {
                         })
                         .collect::<Vec<_>>(),
                 );
-            }
+            });
 
             ranges.sort_by(|(range_a, _), (range_b, _)| range_a.start.cmp(&range_b.start));
 
